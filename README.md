@@ -1,5 +1,5 @@
 # Flask_Socket.io_Chat_App
-Chat application built with Flask & Socket.io
+Realtime Chat application built with Flask, Socket.io & MySQL
 
 ### installation
 - install pipenv
