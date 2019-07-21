@@ -1,0 +1,62 @@
+{% extends 'site/includes/layout.html.jinja2' %}
+
+
+{% block page_styles %}
+    {# Page Styles go here #}
+{% endblock %}
+
+
+
+
+{% block page_content %}
+
+    <div class="container">
+
+        <div class="row my-4">
+            <div class="col text-center">
+                <h1>Welcome {{ current_user.username }}</h1>
+                <h2>Hit the Update button to change your info</h2>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-6 offset-3">
+
+                <form id="profile_form" method="POST" action="/update-profile" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" value="{{ current_user.username }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="number" class="form-control" id="phone" name="phone" value="{{ current_user.phone }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="avatar">Avatar:</label>
+                        <input type="file" class="form-control" id="avatar" name="avatar">
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block">Update</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block page_scripts %}
+    {# Page Scripts go here #}
+{% endblock %}

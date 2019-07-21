@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {# title here #}
+    {% block title %}
+        <title>Flask Chat</title>
+    {% endblock %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-4.3.1/css/bootstrap.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/js/jquery-3.4.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/js/popper.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='vendor/bootstrap-4.3.1/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fontawesome-free-5.9.0/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/jquery.mCustomScrollbar.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/js/jquery.mCustomScrollbar.min.js') }}"></script>
+</head>
+
+
+{% block page_styles %}
+    {# Page Styles go here #}
+{% endblock %}
+
+
+
+<body>
+
+
+    {% block page_content %}
+
+        {# Page contents go here #}
+
+    {% endblock %}
+
+
+</body>
+</html>
+
+
+
+{% block page_scripts %}
+    {# Page Scripts go here #}
+{% endblock %}
+

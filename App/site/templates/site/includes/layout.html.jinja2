@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {# title here #}
+    {% block title %}
+        <title>Flask Chat</title>
+    {% endblock %}
+
+    {# Favicon and Touch Icons #}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-4.3.1/css/bootstrap.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/js/jquery-3.4.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/js/popper.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='vendor/bootstrap-4.3.1/js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fontawesome-free-5.9.0/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/jquery-ui-1.12.1/jquery-ui.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/jquery.mCustomScrollbar.min.css') }}">
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='vendor/js/jquery.mCustomScrollbar.min.js') }}"></script>
+</head>
+
+
+{% block page_styles %}
+    {# Page Styles go here #}
+{% endblock %}
+
+
+
+<body>
+
+    {# NavBar #}
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="/">
+            <img src="{{ url_for('static', filename='images/favicon.png') }}" style="width: 40px" alt="">
+            Flask Chat
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav w-100">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chat">Chat</a>
+                </li><!-- Dropdown -->
+
+                <li class="nav-item dropdown ml-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        <img src="{{ url_for('static', filename='uploads/avatars/'+current_user.avatar)  if current_user.avatar else url_for('static', filename='images/avatar.png') }}" style="width: 25px" alt=""> {{ current_user.username }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right text-center bg-danger">
+                        <a class="dropdown-item" href="auth/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="text-info">{{ message }}</span>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+
+
+    {% block page_content %}
+        {# Page contents go here #}
+    {% endblock %}
+
+
+
+
+</body>
+</html>
+
+
+
+{% block page_scripts %}
+    {# Page Scripts go here #}
+{% endblock %}
+

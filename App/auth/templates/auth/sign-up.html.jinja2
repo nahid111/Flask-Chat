@@ -1,0 +1,134 @@
+{% extends 'auth/auth_layout.html.jinja2' %}
+
+{% block title %}
+    <title>Sign-Up</title>
+{% endblock %}
+
+{% block page_styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+
+
+{% block page_content %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-img-left d-none d-md-flex">
+                        <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body">
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible fade show">
+                                        <button type="button" class="close" data-dismiss="alert">&times;
+                                        </button>
+                                        <span class="text-info">{{ message }}</span>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+
+                        <h5 class="card-title text-center">Register</h5>
+
+                        <form action="/auth/signup" method="POST" enctype="multipart/form-data" class="form-signin"
+                              name="sign_up_form" id="sign_up_form">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+
+                            <div class="form-label-group">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Username"
+                                       required autofocus>
+                                <label for="name">Username</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+                                       required>
+                                <label for="email">Email address</label>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-label-group">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                                       required>
+                                <label for="password">Password</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="confirm_password" name="confirm_password" class="form-control"
+                                       placeholder="Password" required>
+                                <label for="confirm_password">Confirm password</label>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
+                                Register
+                            </button>
+
+                            <a class="d-block text-center mt-2 small" href="/auth/login">Sign In</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block page_scripts %}
+    <script src="{{ url_for('static', filename='vendor/js/jquery.mCustomScrollbar.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //====================================================
+            //      validate form on keyup and submit
+            //====================================================
+            var v = $("#sign_up_form").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 16
+                    },
+                    email: {
+                        required: true,
+                        minlength: 2,
+                        email: true,
+                        maxlength: 100
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 15
+                    },
+                    confirm_password: {
+                        required: true,
+                        minlength: 6,
+                        equalTo: "#password"
+                    }
+
+                },
+                errorElement: "span",
+                errorClass: "help-inline-error"
+            });
+
+
+        });
+    </script>
+{% endblock %}
+
