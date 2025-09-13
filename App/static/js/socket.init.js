@@ -2,8 +2,8 @@
 //                      Socket.IO Create connection to the server
 //========================================================================================
 
-// var socket = io.connect('server_url_with_port');     // var socket = io.connect('http://127.0.0.1:5000');
-var socket = io.connect('http://' + document.domain + ':' + location.port);
+// var socket = io.connect('http://' + location.hostname + ':' + location.port);
+var socket = io.connect(location.origin);
 
 
 // ----------------------------------------------------------------------

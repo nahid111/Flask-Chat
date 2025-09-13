@@ -75,4 +75,6 @@ yarn-error.log
 config/config.py
 /migrations
 Config/config.py
+.venv/
+.ruff_cache/
 

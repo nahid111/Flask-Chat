@@ -1,24 +1,26 @@
-# Flask_Socket.io_Chat_App
+# Flask Socket.io Chat App
 Realtime Chat application built with Flask, Socket.io & MySQL
 
 ### installation
-- install pipenv
-```bash
-$ sudo -H pip install -U pipenv
-```
 - clone the repo & cd into it
-- install dependencies
-```bash
-$ pipenv install
-```
-- Create *config.py* inside *Config* directory using the *example_config.py*
+- create virtual env and install dependencies
+    ```bash
+    $ python3 -m venv .venv
+    $ source ./.venv/bin/activate 
+    $ pip install uv
+    $ uv sync --frozen
+    ```
+
+### migration
+- Create *.env* file using *.env.example*
 - Create Database tables - 
-```bash
-$ pipenv run python migrations.py db init
-$ pipenv run python migrations.py db migrate
-$ pipenv run python migrations.py db upgrade
-```
-- run the app
-```bash
-$ pipenv run python run.py
-```
+    ```bash
+    $ flask --app App/ db init
+    $ flask --app App/ db migrate -m "Initial migration."
+    $ flask --app App/ db upgrade
+    ```
+
+### run app
+    ```bash
+    $ python run.py
+    ```
